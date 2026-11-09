@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>入住諮詢家屬問卷｜內容測試</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4f1ea;font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;font-size:18px;line-height:1.65;color:#1f2a2e}
+.top{background:#24423a;color:#fff;padding:12px 18px;display:flex;gap:10px;align-items:center;font-weight:700;letter-spacing:.05em}
+.mark{background:#f2c36b;color:#24423a;border-radius:6px;padding:0 8px}
+.test-tag{margin-left:auto;background:#b3261e;border-radius:999px;font-size:13px;padding:2px 10px}
+main{max-width:760px;margin:0 auto;padding:14px 14px 150px}
+.card{background:#fff;border:1px solid #e2ddd2;border-radius:12px;padding:20px 18px;margin:12px 0}
+h1{font-size:23px;margin:0 0 8px}h2{font-size:19px;margin:0}
+.muted{color:#5b6a70}.small{font-size:15px}
+.note{background:#e7eefb;border-left:5px solid #2459a8;padding:12px 14px;border-radius:8px;margin:12px 0}
+.note.warn{background:#fff4dc;border-color:#a86a00}.note.ok{background:#e5f4ea;border-color:#2e7d4f}.note.bad{background:#fbe9e7;border-color:#b3261e;color:#7a1b15}
+label.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}label.field>span{font-weight:600;font-size:16.5px;color:#33424a}
+input,select,textarea{font-size:18px;padding:12px;border:1.5px solid #c9c2b3;border-radius:10px;background:#fff;min-height:52px;width:100%;font-family:inherit}
+textarea{min-height:74px}
+.btn{font-size:18px;min-height:54px;padding:10px 18px;border-radius:12px;border:1.5px solid #c9c2b3;background:#fff;cursor:pointer;font-weight:600;font-family:inherit}
+.btn.primary{background:#2f5d50;color:#fff;border-color:#2f5d50}.btn.outline{border-color:#2f5d50;color:#2f5d50}
+.btn.block{width:100%;margin-top:12px}.btn.small{min-height:44px;font-size:16px;padding:6px 14px}
+.btn:disabled{background:#cdd5d9;border-color:#cdd5d9;color:#fff;cursor:not-allowed}
+.progress{position:sticky;top:0;z-index:5;background:#f4f1ea;padding:10px 0 6px}
+.bar{height:10px;background:#e2ddd2;border-radius:6px;overflow:hidden}.bar span{display:block;height:100%;background:#2f5d50}
+.ptext{font-size:15px;color:#4a5a60;margin:6px 0}
+.q{border:1.5px solid #e2ddd2;border-radius:12px;padding:16px 14px;margin:16px 0;background:#fff}
+.q.done{border-color:#b8d8c4;background:#fbfdfb}
+.qhead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.state{white-space:nowrap;font-size:14px;background:#fbe9e7;color:#b3261e;border-radius:999px;padding:2px 10px;font-weight:700}.state.ok{background:#e5f4ea;color:#2e7d4f}
+.help{color:#4a5a60;margin:6px 0}
+.example{background:#fff8e6;border:1px dashed #e0b85a;border-radius:10px;padding:10px 12px;margin:10px 0;font-size:16.5px;color:#5a4300}.example b{display:block;color:#7a5a00}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:12px 0 6px}
+.opt{font-size:17.5px;min-height:54px;padding:8px 12px;border-radius:12px;border:1.5px solid #c9c2b3;background:#fff;cursor:pointer;text-align:left;font-family:inherit}
+.opt.on{background:#e3eeea;border-color:#2f5d50;color:#1f4238;font-weight:700}
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0 12px}
+.follow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:#fff4dc;padding:10px;border-radius:10px;margin:8px 0}.follow>span{width:100%;font-weight:600}
+.fb{margin-top:14px;border:2px dashed #b3261e;border-radius:12px;padding:12px;background:#fffafa}
+.fb summary{cursor:pointer;font-weight:700;color:#b3261e;font-size:16.5px}
+.fb .opts{grid-template-columns:repeat(3,1fr)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{border:1.5px solid #c9c2b3;border-radius:999px;padding:6px 12px;font-size:15px;background:#fff;cursor:pointer;font-family:inherit}
+.chip.on{background:#b3261e;border-color:#b3261e;color:#fff}
+.fbtag{font-size:13px;border-radius:999px;padding:1px 8px;margin-left:6px;background:#e2ddd2;color:#33424a;font-weight:600}
+.bottom[hidden]{display:none}
+.bottom{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #e2ddd2;padding:10px 12px;display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:8px;z-index:10;max-width:760px;margin:0 auto}
+@media(max-width:520px){.bottom .btn{font-size:15.5px;padding:6px 8px}.fb .opts{grid-template-columns:1fr}}
+ul.list{padding-left:20px}ul.list li{margin:6px 0}
+.tag{color:#b3261e;font-weight:700;font-size:15px;margin:0 0 4px}
+.link{background:none;border:0;color:#2f5d50;text-decoration:underline;font-size:18px;padding:0;cursor:pointer;text-align:left;font-family:inherit}
+.toast{position:fixed;bottom:92px;left:50%;transform:translateX(-50%);background:rgba(31,42,46,.88);color:#fff;padding:6px 16px;border-radius:999px;font-size:15px;z-index:11}
+.sim{border:2px dashed #c9c2b3;border-radius:12px;padding:16px;text-align:center;color:#5b6a70;margin:10px 0}
+</style>
+</head>
+<body>
+<div class="top"><span class="mark">清福</span><span>入住諮詢資料填寫</span><span class="test-tag">內容測試版</span></div>
+<main id="app"></main>
+<div class="bottom" id="nav" hidden>
+  <button class="btn" id="prev">← 上一步</button>
+  <button class="btn outline" id="save">💾 暫存</button>
+  <button class="btn primary" id="next">下一步 →</button>
+</div>
+<div class="toast" id="toast" hidden></div>
+<script>
+var EXEC_URL = 'https://script.google.com/macros/s/AKfycbwoYiiIrptgisotwg8bR5MQkskhtSnPW6uKbl1xgtUXqyrhAoJR7WW99VH-f7mWHR0N/exec';
+var DATA = {"secs": [{"id": "contact-consent", "title": "諮詢人與資料同意", "description": "先確認由誰提供資料，以及後續聯絡方式。這三題完成後才能正式送出。", "questions": [{"id": "contact_relationship", "label": "您與長輩的關係", "options": ["配偶", "子女", "孫子女", "手足", "其他親屬", "非親屬照顧者"], "required": true, "detailPlaceholder": "若選其他親屬或非親屬照顧者，請說明", "example": "例：我是長輩的兒子，選「子女」。如果是姪女、媳婦，選「其他親屬」並寫上「姪女」。"}, {"id": "preferred_contact", "label": "方便聯絡您的方式（可複選）", "kind": "multi", "options": ["手機通話", "市話", "LINE", "電子郵件", "由其他家屬轉達"], "required": true, "detailPlaceholder": "請留下方便聯絡的時段或其他說明", "example": "例：勾「手機通話」「LINE」，補充：平日晚上 7 點後方便接電話。"}, {"id": "data_consent", "label": "同意資料供集團內部入住評估、媒合及指定機構使用", "help": "資料僅供入住諮詢流程使用；正式上線前仍須完成法務與個資文字審查。", "options": ["同意", "不同意"], "required": true, "consent": true, "example": "資料只用在入住評估、媒合機構，以及您同意轉交的機構。不同意的話無法線上送出，可改請客關室協助。"}]}, {"id": "profile", "title": "基本資料與生活背景", "description": "依原護評表補齊基本資料。能確定的題目直接選答；不知道時可標記後續補件。", "questions": [{"id": "gender", "label": "長輩性別", "options": ["男", "女"], "example": "依長輩身分證上的性別選擇。"}, {"id": "height_weight", "label": "身高與體重", "kind": "fields", "options": ["不清楚"], "fields": [{"id": "height_cm", "label": "身高", "type": "number", "unit": "公分", "placeholder": "例：156"}, {"id": "weight_kg", "label": "體重", "type": "number", "unit": "公斤", "placeholder": "例：52"}], "requiredFieldIds": ["height_cm", "weight_kg"], "example": "例：身高 156 公分、體重 52 公斤。最近沒量過可填大約數字，完全不知道請選「不清楚」。"}, {"id": "language", "label": "平常使用的語言（可複選）", "kind": "multi", "options": ["國語", "台語", "客家語", "原住民族語", "其他", "不清楚"], "exclusiveOptions": ["不清楚"], "detailPlaceholder": "若選其他，請說明；也可補充哪一種語言理解較好", "example": "例：勾「台語」「國語」，補充：台語聽得懂、國語只聽得懂簡單的句子。"}, {"id": "education", "label": "教育程度", "options": ["不識字", "識字但未受正式教育", "國小", "國中", "高中職", "大專院校", "研究所以上", "不清楚"], "example": "例：讀到國小畢業選「國小」；沒讀過書但看得懂簡單的字選「識字但未受正式教育」。"}, {"id": "religion", "label": "宗教信仰（可複選）", "kind": "multi", "options": ["佛教", "道教", "民間信仰", "天主教", "基督教", "一貫道", "無", "其他", "不清楚"], "exclusiveOptions": ["無", "不清楚"], "detailPlaceholder": "若有飲食、儀式或其他習俗需求，請補充", "example": "例：勾「佛教」，補充：初一、十五吃素，房間想放一尊小佛像。沒有宗教信仰請勾「無」。"}, {"id": "marital_status", "label": "婚姻狀況", "options": ["未婚", "已婚", "離婚", "同居", "喪偶", "分居", "不清楚"], "example": "例：先生已經過世，選「喪偶」。"}, {"id": "residence", "label": "目前居住狀況", "options": ["與子女同住", "子女家輪流住", "與配偶同住", "獨居", "與親友或孫代親戚同住", "住院中", "日照中心", "其他機構", "國外居住", "其他", "不清楚"], "detailPlaceholder": "請補充同住者、是否有外籍照顧者、住院或機構名稱", "example": "例：選「與子女同住」，補充：住大兒子家，白天有外籍看護照顧。目前在醫院就選「住院中」並寫醫院名稱。"}, {"id": "family_support", "label": "目前主要照顧者與家庭支持", "options": ["有固定主要照顧者", "由多人輪流照顧", "目前無固定照顧者", "不清楚"], "detailPlaceholder": "請說明主要照顧者、共同照顧者與可協助家屬", "example": "例：選「有固定主要照顧者」，補充：主要是大女兒照顧，二兒子週末輪流。"}]}, {"id": "medical", "title": "健康、就醫與用藥", "description": "以原表單的常見老人疾病為主，先勾選再補必要細節；用藥以藥袋為主、家屬陳述為輔。", "questions": [{"id": "disability", "label": "身心障礙證明、障礙類別或長照失能等級", "options": ["無", "有", "申請中", "不清楚"], "fieldsWhen": ["有", "申請中"], "fields": [{"id": "disability_category", "label": "障礙類別", "placeholder": "例：第二類（視覺、聽覺、平衡）"}, {"id": "disability_level", "label": "障礙程度", "type": "select", "options": ["輕度", "中度", "重度", "極重度", "不清楚"]}, {"id": "ltc_level", "label": "長照失能等級", "type": "number", "unit": "級", "placeholder": "例：6"}, {"id": "subsidy_need", "label": "補助需求", "type": "select", "options": ["有", "無", "不清楚"]}], "example": "例：選「有」，障礙類別填「第一類（失智症）」、程度「中度」、長照失能等級「6 級」。沒有證明請選「無」。"}, {"id": "usual_hospital", "label": "平常就醫醫院與科別", "options": ["有固定醫院", "無固定醫院", "不清楚"], "fieldsWhen": ["有固定醫院"], "fields": [{"id": "hospital_1", "label": "醫院／診所一", "placeholder": "名稱"}, {"id": "department_1", "label": "科別一", "placeholder": "科別"}, {"id": "hospital_2", "label": "醫院／診所二", "placeholder": "名稱"}, {"id": "department_2", "label": "科別二", "placeholder": "科別"}], "example": "例：選「有固定醫院」，醫院一填「台中榮總」、科別填「心臟內科」；醫院二填「附近診所」、科別「家醫科」。"}, {"id": "referral_records", "label": "轉診或重要門診紀錄", "options": ["有", "無", "不清楚"], "fieldsWhen": ["有"], "fields": [{"id": "referral_hospital", "label": "醫院", "placeholder": "醫院名稱"}, {"id": "referral_department", "label": "科別", "placeholder": "科別"}, {"id": "referral_reason", "label": "原因或結果", "placeholder": "轉診原因、重要檢查或醫囑"}], "example": "例：去年 5 月從診所轉診到大醫院做心臟超音波，醫師說心臟功能偏弱。沒有請選「無」。"}, {"id": "current_hospitalization", "label": "目前是否住院", "options": ["有", "無", "不清楚"], "fieldsWhen": ["有"], "fields": [{"id": "hospital", "label": "住院醫院", "placeholder": "醫院名稱"}, {"id": "admission_date", "label": "住院日期", "placeholder": "例：民國 115 年 8 月 29 日"}, {"id": "admission_reason", "label": "住院原因", "placeholder": "診斷或住院原因"}], "example": "例：選「有」，住院醫院填「台中醫院」、日期「115 年 10 月 28 日」、原因「肺炎」。目前在家請選「無」。"}, {"id": "cardiovascular_history", "label": "心血管與腦血管病史（可複選）", "kind": "multi", "options": ["無相關病史", "心臟病", "高血壓", "腦中風", "其他", "不清楚"], "exclusiveOptions": ["無相關病史", "不清楚"], "fieldsWhen": ["心臟病", "高血壓", "腦中風", "其他"], "fields": [{"id": "heart_years", "label": "心臟病罹患年數", "type": "number", "unit": "年", "showWhen": ["心臟病"]}, {"id": "heart_surgery", "label": "心臟手術", "type": "select", "options": ["有", "無", "不清楚"], "showWhen": ["心臟病"]}, {"id": "hypertension_years", "label": "高血壓罹患年數", "type": "number", "unit": "年", "showWhen": ["高血壓"]}, {"id": "stroke_count", "label": "中風次數", "type": "number", "unit": "次", "showWhen": ["腦中風"]}, {"id": "stroke_latest_year", "label": "最近中風年份", "placeholder": "民國年", "showWhen": ["腦中風"]}, {"id": "paralysis_side", "label": "偏癱側別", "type": "select", "options": ["無偏癱", "左側", "右側", "雙側", "不清楚"], "showWhen": ["腦中風"]}], "example": "例：勾「高血壓」，罹患年數填 10；勾「腦中風」，中風次數 1 次、最近一次民國 113 年、左側無力。都沒有請勾「無相關病史」。"}, {"id": "neurological_history", "label": "神經、認知與精神病史（可複選）", "kind": "multi", "options": ["無相關病史", "癲癇", "帕金森氏症", "帶狀皰疹", "躁鬱症或憂鬱症", "失智症", "其他", "不清楚"], "exclusiveOptions": ["無相關病史", "不清楚"], "fieldsWhen": ["癲癇", "帕金森氏症", "帶狀皰疹", "躁鬱症或憂鬱症", "失智症", "其他"], "fields": [{"id": "epilepsy_years", "label": "癲癇罹患年數", "type": "number", "unit": "年", "showWhen": ["癲癇"]}, {"id": "epilepsy_control", "label": "癲癇藥物控制", "type": "select", "options": ["有", "無", "不清楚"], "showWhen": ["癲癇"]}, {"id": "parkinson_years", "label": "帕金森氏症年數", "type": "number", "unit": "年", "showWhen": ["帕金森氏症"]}, {"id": "dementia_years", "label": "失智症年數", "type": "number", "unit": "年", "showWhen": ["失智症"]}, {"id": "dementia_treatment", "label": "失智症治療", "type": "select", "options": ["有", "無", "不清楚"], "showWhen": ["失智症"]}], "example": "例：勾「失智症」，年數填 3，治療選「有」（固定看神經內科、吃藥）。都沒有請勾「無相關病史」。"}, {"id": "systemic_history", "label": "呼吸、消化、泌尿與代謝病史（可複選）", "kind": "multi", "options": ["無相關病史", "肺炎", "COPD", "氣喘", "結核病", "胃潰瘍", "腸胃道出血", "腸阻塞", "膽結石術後", "肝硬化", "泌尿道感染", "攝護腺肥大", "腎臟病", "糖尿病", "痛風", "人工關節", "其他", "不清楚"], "exclusiveOptions": ["無相關病史", "不清楚"], "fieldsWhen": ["肺炎", "COPD", "氣喘", "結核病", "胃潰瘍", "腸胃道出血", "腸阻塞", "膽結石術後", "肝硬化", "泌尿道感染", "攝護腺肥大", "腎臟病", "糖尿病", "痛風", "人工關節", "其他"], "fields": [{"id": "tb_year", "label": "結核病發生年份", "placeholder": "民國年", "showWhen": ["結核病"]}, {"id": "tb_treatment", "label": "結核病治療", "type": "select", "options": ["已完成", "治療中", "未治療", "不清楚"], "showWhen": ["結核病"]}, {"id": "kidney_years", "label": "腎臟病年數", "type": "number", "unit": "年", "showWhen": ["腎臟病"]}, {"id": "diabetes_treatment", "label": "糖尿病治療", "type": "select", "options": ["口服藥", "胰島素", "飲食控制", "無治療", "不清楚"], "showWhen": ["糖尿病"]}, {"id": "artificial_joint_site", "label": "人工關節部位", "placeholder": "例：左膝", "showWhen": ["人工關節"]}], "example": "例：勾「糖尿病」，治療選「口服藥」；勾「人工關節」，部位填「右膝」。都沒有請勾「無相關病史」。"}, {"id": "allergy", "label": "藥物、食物或其他過敏", "options": ["有", "無", "不清楚"], "fieldsWhen": ["有"], "fields": [{"id": "allergen", "label": "過敏原", "placeholder": "藥名、食物或其他物質"}, {"id": "reaction", "label": "曾出現的反應", "placeholder": "例：紅疹、呼吸困難"}, {"id": "source", "label": "資料來源", "type": "select", "options": ["藥袋或病歷", "家屬陳述", "其他"]}], "example": "例：選「有」，過敏原填「盤尼西林」、反應填「全身起紅疹」、來源選「藥袋或病歷」。沒有過敏請選「無」。"}, {"id": "medications", "label": "目前規律用藥", "options": ["有規律用藥", "目前無規律用藥", "不清楚"], "fieldsWhen": ["有規律用藥"], "fields": [{"id": "source", "label": "用藥資料來源", "type": "select", "options": ["藥袋／處方", "家屬陳述", "藥袋及家屬陳述"]}, {"id": "medicine_1", "label": "藥物一", "placeholder": "藥名、劑量、服用時間"}, {"id": "medicine_2", "label": "藥物二", "placeholder": "藥名、劑量、服用時間"}, {"id": "medicine_3", "label": "藥物三", "placeholder": "藥名、劑量、服用時間"}, {"id": "medicine_4", "label": "藥物四", "placeholder": "藥名、劑量、服用時間"}, {"id": "medicine_5", "label": "藥物五", "placeholder": "藥名、劑量、服用時間"}], "fieldWarnings": [{"when": ["有規律用藥"], "fieldIds": ["source", "medicine_1"], "message": "目前規律用藥已選「有」，請至少填寫資料來源與第一項藥物；若無法確認可請客服協助。"}], "example": "例：選「有規律用藥」，來源選「藥袋／處方」，藥物一填「脈優 5mg，早上 1 顆」。最好在下方「醫療文件」拍藥袋上傳。"}, {"id": "tb_history", "label": "是否有結核病（TB）接觸史", "options": ["否", "是", "不清楚"], "fieldsWhen": ["是"], "fields": [{"id": "contact_date", "label": "接觸日期", "placeholder": "約略日期即可"}, {"id": "followup", "label": "後續檢查或處理", "placeholder": "例：胸部 X 光、痰液檢查"}], "example": "例：家中有人得過肺結核，選「是」，接觸日期填「約 114 年 3 月」，後續檢查填「照過胸部 X 光，正常」。沒有請選「否」。"}]}, {"id": "daily-function", "title": "日常生活與身體功能", "description": "將原表單的意識、視力、聽力、表達、理解、皮膚、傷口與特殊照護逐項拆開，降低電訪重新追問。", "questions": [{"id": "consciousness", "label": "意識與認知狀況（可複選）", "kind": "multi", "options": ["意識清楚", "認知退化", "容易混亂", "嗜睡", "昏迷", "無意識", "不清楚"], "exclusiveOptions": ["意識清楚", "昏迷", "無意識", "不清楚"], "detailPlaceholder": "請補充一天中容易改變的時段或情況", "example": "例：勾「認知退化」「容易混亂」，補充：傍晚以後比較會搞不清楚在哪裡。"}, {"id": "vision", "label": "視力狀況（可複選）", "kind": "multi", "options": ["正常", "青光眼", "模糊", "白內障", "弱視", "黃斑部病變", "失明", "其他", "不清楚"], "exclusiveOptions": ["正常", "不清楚"], "fieldsWhen": ["青光眼", "模糊", "白內障", "弱視", "黃斑部病變", "失明", "其他"], "fields": [{"id": "glaucoma_side", "label": "青光眼側別", "type": "select", "options": ["左側", "右側", "雙側", "不清楚"], "showWhen": ["青光眼"]}, {"id": "eye_drops", "label": "眼藥水使用", "type": "select", "options": ["有", "無", "不清楚"], "showWhen": ["青光眼"]}, {"id": "blurred_side", "label": "視力模糊側別", "type": "select", "options": ["左側", "右側", "雙側", "不清楚"], "showWhen": ["模糊"]}, {"id": "cataract_side", "label": "白內障側別", "type": "select", "options": ["左側", "右側", "雙側", "不清楚"], "showWhen": ["白內障"]}, {"id": "blind_side", "label": "失明側別", "type": "select", "options": ["左側", "右側", "雙側", "不清楚"], "showWhen": ["失明"]}], "fieldWarnings": [{"when": ["青光眼"], "fieldIds": ["glaucoma_side", "eye_drops"], "message": "已勾選青光眼，請補充側別與眼藥水使用情形。"}, {"when": ["模糊"], "fieldIds": ["blurred_side"], "message": "已勾選視力模糊，請補充左眼、右眼或雙眼。"}, {"when": ["白內障"], "fieldIds": ["cataract_side"], "message": "已勾選白內障，請補充左眼、右眼或雙眼。"}, {"when": ["失明"], "fieldIds": ["blind_side"], "message": "已勾選失明，請補充左眼、右眼或雙眼。"}], "example": "例：勾「白內障」，側別選「雙側」；看東西都正常請勾「正常」。"}, {"id": "hearing", "label": "聽力狀況（可複選）", "kind": "multi", "options": ["正常", "重聽", "失聰", "使用助聽器", "其他", "不清楚"], "exclusiveOptions": ["正常", "不清楚"], "fieldsWhen": ["重聽", "失聰", "使用助聽器", "其他"], "fields": [{"id": "hard_hearing_side", "label": "重聽側別", "type": "select", "options": ["左側", "右側", "雙側", "不清楚"], "showWhen": ["重聽"]}, {"id": "deaf_side", "label": "失聰側別", "type": "select", "options": ["左側", "右側", "雙側", "不清楚"], "showWhen": ["失聰"]}, {"id": "hearing_aid_side", "label": "助聽器側別", "type": "select", "options": ["左耳", "右耳", "雙耳", "不清楚"], "showWhen": ["使用助聽器"]}], "fieldWarnings": [{"when": ["重聽"], "fieldIds": ["hard_hearing_side"], "message": "已勾選重聽，請補充左耳、右耳或雙耳。"}, {"when": ["失聰"], "fieldIds": ["deaf_side"], "message": "已勾選失聰，請補充左耳、右耳或雙耳。"}, {"when": ["使用助聽器"], "fieldIds": ["hearing_aid_side"], "message": "已勾選使用助聽器，請補充使用側別。"}], "example": "例：勾「重聽」，側別選「右側」；勾「使用助聽器」，側別選「右耳」。"}, {"id": "expression", "label": "表達能力（可複選）", "kind": "multi", "options": ["可清楚表達", "僅可表達簡單句子", "僅可表達零碎詞或字", "主要靠筆談", "主要靠動作或表情", "單腔發聲", "言語無法讓人理解", "無法言語", "不清楚"], "exclusiveOptions": ["可清楚表達", "不清楚"], "detailPlaceholder": "請補充最有效的表達方式", "example": "例：勾「僅可表達簡單句子」，補充：會說「要吃飯」「要上廁所」，複雜的事說不清楚。"}, {"id": "comprehension", "label": "理解能力", "options": ["正常", "僅可理解簡單句子", "僅可理解關鍵詞或字", "無法判斷是否理解", "答非所問", "不回應", "無法理解", "不清楚"], "detailPlaceholder": "請補充需要放慢、重複或搭配手勢的情況", "example": "例：選「僅可理解簡單句子」，補充：要放慢說、一次講一件事。"}, {"id": "skin", "label": "皮膚問題（可複選）", "kind": "multi", "options": ["皮膚正常", "過度乾燥", "有疹子", "搔癢", "使用藥膏", "其他皮膚問題", "不清楚"], "exclusiveOptions": ["皮膚正常", "不清楚"], "fieldsWhen": ["過度乾燥", "有疹子", "搔癢", "使用藥膏", "其他皮膚問題"], "fields": [{"id": "skin_location", "label": "問題部位", "placeholder": "例：雙小腿、背部"}, {"id": "ointment", "label": "使用藥膏", "placeholder": "藥膏名稱與使用頻率", "showWhen": ["使用藥膏"]}], "example": "例：勾「過度乾燥」「搔癢」，問題部位填「雙小腿」；勾「使用藥膏」並寫藥膏名稱與一天擦幾次。"}, {"id": "wound", "label": "傷口問題", "options": ["無傷口", "有傷口", "不清楚"], "fieldsWhen": ["有傷口"], "fields": [{"id": "location", "label": "傷口部位", "placeholder": "例：右腳跟"}, {"id": "type", "label": "傷口類型", "type": "select", "options": ["擦傷", "割傷", "術後傷口", "燒燙傷", "壓力性損傷", "慢性傷口", "其他", "不清楚"]}, {"id": "size", "label": "傷口大小", "placeholder": "長 × 寬，單位公分"}, {"id": "depth", "label": "傷口深度", "placeholder": "公分或分級；不清楚可填不清楚"}, {"id": "dressing", "label": "換藥方式", "placeholder": "敷料、藥品或處理方式"}, {"id": "frequency", "label": "換藥頻率", "placeholder": "例：每日一次"}], "fieldWarnings": [{"when": ["有傷口"], "fieldIds": ["location", "type", "size", "depth", "frequency"], "message": "已選擇有傷口，請補充部位、類型、大小、深度與換藥頻率；不知道的欄位可填「不清楚」。"}], "example": "例：選「有傷口」，部位「右腳跟」、類型「壓力性損傷」、大小「2 × 3 公分」、深度「不清楚」、換藥方式「人工皮」、頻率「三天一次」。"}, {"id": "special_care", "label": "目前特殊管路或照護需求（可複選）", "kind": "multi", "options": ["無特殊管路或照護", "導尿管", "氣切管", "抽痰機", "胰島素注射", "氧氣治療", "造口", "血糖量測", "傷口引流管", "洗腎", "其他", "不清楚"], "exclusiveOptions": ["無特殊管路或照護", "不清楚"], "fieldsWhen": ["導尿管", "氣切管", "抽痰機", "胰島素注射", "氧氣治療", "造口", "血糖量測", "傷口引流管", "洗腎", "其他"], "fields": [{"id": "oxygen_schedule", "label": "氧氣使用", "placeholder": "24 小時或偶爾；流量", "showWhen": ["氧氣治療"]}, {"id": "stoma_site", "label": "造口部位", "placeholder": "部位", "showWhen": ["造口"]}, {"id": "dialysis_schedule", "label": "洗腎時間", "placeholder": "星期與上午／下午", "showWhen": ["洗腎"]}, {"id": "other_care", "label": "其他照護說明", "placeholder": "頻率、器材或注意事項"}], "example": "例：勾「導尿管」「氧氣治療」，氧氣使用填「晚上睡覺時，每分鐘 2 公升」。都沒有請勾「無特殊管路或照護」。"}, {"id": "daily_assistance", "label": "日常生活需要協助的項目（可複選）", "kind": "multi", "options": ["目前可自理", "洗澡", "穿脫衣物", "盥洗", "服藥", "上下樓", "翻身", "床椅移位", "其他", "不清楚"], "exclusiveOptions": ["目前可自理", "不清楚"], "detailPlaceholder": "請補充協助程度或特別方法", "example": "例：勾「洗澡」「穿脫衣物」「服藥」，補充：洗澡要人在旁邊扶，藥要家人分好。全部自己來請勾「目前可自理」。"}, {"id": "mobility", "label": "行走與活動狀況（可複選）", "kind": "multi", "options": ["可自行行走且穩定", "可行走但不穩", "需一人扶持", "需兩人扶持", "無法行走", "臥床為主", "不清楚"], "exclusiveOptions": ["可自行行走且穩定", "不清楚"], "detailPlaceholder": "可依室內、室外或不同時段複選，並補充上下床、轉位與外出狀況", "example": "例：勾「可行走但不穩」「需一人扶持」，補充：屋內扶牆可以走，出門要坐輪椅。"}, {"id": "assistive_device", "label": "輔具、輪椅或床具使用（可複選）", "kind": "multi", "options": ["目前未使用輔具", "單手拐杖", "四腳拐杖", "助行器", "一般輪椅", "高背輪椅", "約束衣", "護腰", "氣墊床", "其他", "不清楚"], "exclusiveOptions": ["目前未使用輔具", "不清楚"], "fieldsWhen": ["單手拐杖", "四腳拐杖", "助行器", "一般輪椅", "高背輪椅", "約束衣", "護腰", "氣墊床", "其他"], "fields": [{"id": "wheelchair_ownership", "label": "輪椅來源", "type": "select", "options": ["自備", "需要租借", "需要購買", "不清楚"]}, {"id": "care_bed_need", "label": "陪客床或同住需求", "placeholder": "如有，請說明對象與原因"}], "example": "例：勾「助行器」「一般輪椅」，輪椅來源選「自備」。都沒有用請勾「目前未使用輔具」。"}, {"id": "recent_fall", "label": "近期是否跌倒", "options": ["有", "無", "不清楚"], "fieldsWhen": ["有"], "fields": [{"id": "date", "label": "最近一次日期", "placeholder": "約略日期"}, {"id": "cause", "label": "原因", "placeholder": "當時情況"}, {"id": "injury", "label": "受傷與就醫", "placeholder": "有無受傷、是否就醫"}], "example": "例：選「有」，日期「115 年 9 月」、原因「半夜起床上廁所滑倒」、受傷「額頭擦傷，有去急診縫 3 針」。沒有請選「無」。"}]}, {"id": "care-needs", "title": "飲食、排泄與睡眠", "description": "依原護評表保留具體照顧方式，並補足白天、夜間、假牙與嗆咳等細節。", "questions": [{"id": "toileting", "label": "如廁方式（可複選）", "kind": "multi", "options": ["可自理", "需協助", "便盆椅", "夜壺", "尿布或學習褲", "不清楚"], "exclusiveOptions": ["可自理", "不清楚"], "fieldsWhen": ["需協助", "便盆椅", "夜壺", "尿布或學習褲"], "fields": [{"id": "daytime", "label": "日間方式", "placeholder": "如廁與協助方式"}, {"id": "nighttime", "label": "夜間方式", "placeholder": "如廁與協助方式"}, {"id": "bowel_issue", "label": "排便問題", "placeholder": "例：便祕、腹瀉、失禁"}], "example": "例：勾「尿布或學習褲」，日間填「白天扶去廁所」、夜間填「晚上包尿布」、排便問題填「容易便祕，三天一次」。"}, {"id": "diet_texture", "label": "飲食型態（可複選）", "kind": "multi", "options": ["一般軟質", "剪餐", "碎餐（細）", "泥餐", "流質", "全素", "早齋", "初一十五素食", "其他", "不清楚"], "exclusiveOptions": ["不清楚"], "detailPlaceholder": "請補充忌食、偏好與食量", "example": "例：勾「剪餐」「早齋」，補充：不吃牛肉，飯量大約半碗。"}, {"id": "feeding", "label": "進食方式（可複選）", "kind": "multi", "options": ["由口進食", "可自理", "需餵食", "鼻胃管灌食", "活動式假牙", "固定式假牙", "全口假牙", "部分假牙", "其他", "不清楚"], "exclusiveOptions": ["不清楚"], "fieldsWhen": ["鼻胃管灌食", "部分假牙", "其他"], "fields": [{"id": "tube_schedule", "label": "管灌時間與量", "placeholder": "例：每日 4 次，每次 250 ml"}, {"id": "denture_part", "label": "部分假牙部位", "placeholder": "上排／下排、左／右"}], "example": "例：勾「由口進食」「需餵食」「全口假牙」。有鼻胃管請勾「鼻胃管灌食」並填每天幾次、每次多少 ml。"}, {"id": "choking", "label": "是否曾嗆咳或有吸入性肺炎", "options": ["有", "無", "不清楚"], "fieldsWhen": ["有"], "fields": [{"id": "frequency", "label": "發生頻率", "placeholder": "例：每週 2 次"}, {"id": "food_type", "label": "容易發生的食物型態", "placeholder": "水、湯、固體食物等"}, {"id": "latest", "label": "最近一次時間", "placeholder": "約略日期"}, {"id": "pneumonia", "label": "吸入性肺炎史", "type": "select", "options": ["有", "無", "不清楚"]}], "example": "例：選「有」，頻率「每週 2、3 次」、容易發生「喝水、喝湯」、最近一次「上週」、吸入性肺炎史「有」。沒有請選「無」。"}, {"id": "sleep", "label": "夜間睡眠狀況（可複選）", "kind": "multi", "options": ["無明顯睡眠問題", "入睡困難", "容易醒來", "日夜顛倒", "夜間遊走", "夜間頻繁如廁", "需要翻身或照護", "使用睡眠藥物", "其他", "不清楚"], "exclusiveOptions": ["無明顯睡眠問題", "不清楚"], "fields": [{"id": "hours", "label": "平均睡眠時數", "type": "number", "unit": "小時"}, {"id": "medicine", "label": "睡眠藥物", "placeholder": "藥名或依藥袋確認", "showWhen": ["使用睡眠藥物"]}, {"id": "night_care", "label": "夜間照顧需求", "placeholder": "如廁、翻身、陪伴等", "showWhen": ["夜間遊走", "夜間頻繁如廁", "需要翻身或照護"]}], "detailPlaceholder": "若選其他，請說明；也可補充各狀況發生頻率", "example": "例：勾「容易醒來」「夜間頻繁如廁」，平均睡 5 小時，夜間照顧需求填「半夜要扶去廁所 2 次」。"}]}, {"id": "behavior-safety", "title": "行為與安全", "description": "用於準備照顧方式，不會由系統自動作成收案決定。請依實際發生情況回答。", "questions": [{"id": "wandering", "label": "是否曾走失、遊走或自行離開安全區域", "options": ["有", "無", "不清楚"], "fieldsWhen": ["有"], "fields": [{"id": "latest", "label": "最近一次", "placeholder": "日期與地點"}, {"id": "time", "label": "常見時段", "placeholder": "例：傍晚"}, {"id": "response", "label": "有效處理方式", "placeholder": "家屬如何處理"}], "example": "例：選「有」，最近一次「上個月在公園附近找到」、常見時段「傍晚」、處理方式「陪他散步後比較安定」。沒有發生過請選「無」。"}, {"id": "aggression", "label": "是否曾推打、踢咬、丟東西、威脅或強烈抗拒照顧", "options": ["有", "無", "不清楚"], "fieldsWhen": ["有"], "fields": [{"id": "behavior", "label": "具體行為", "placeholder": "發生什麼行為"}, {"id": "trigger", "label": "常見情境", "placeholder": "何時、對誰、什麼原因"}, {"id": "frequency", "label": "頻率", "placeholder": "例：每週 1 次"}, {"id": "calming", "label": "有效安撫方式", "placeholder": "目前有效的方法"}], "example": "例：選「有」，具體行為「洗澡時會推人、抓手」、情境「陌生人幫忙洗澡時」、頻率「每週 1 次」、安撫方式「先聊天、由熟悉的家人陪」。沒有發生過請選「無」。"}, {"id": "sexual_behavior", "label": "是否曾有令他人不舒服的觸碰、言語或脫衣等行為", "options": ["有", "無", "不清楚"], "fieldsWhen": ["有"], "fields": [{"id": "behavior", "label": "具體行為", "placeholder": "請客觀描述"}, {"id": "context", "label": "情境與頻率", "placeholder": "何時、對誰、多久一次"}, {"id": "response", "label": "目前處理方式", "placeholder": "有效的界線或轉移方式"}], "example": "例：選「有」，具體行為「會摸照顧者的手臂、說不雅的話」、情境「晚上」、處理方式「轉移話題、由同性照顧」。沒有發生過請選「無」。"}, {"id": "self_harm", "label": "是否曾有自傷、輕生言語或危險行為", "options": ["有", "無", "不清楚"], "fieldsWhen": ["有"], "fields": [{"id": "latest", "label": "最近時間", "placeholder": "約略日期"}, {"id": "behavior", "label": "言語或行為", "placeholder": "具體情況"}, {"id": "treatment", "label": "就醫或處理", "placeholder": "是否已就醫、目前安全措施"}], "example": "例：選「有」，最近時間「今年 8 月」、言語或行為「說活著沒意思」、處理「已看身心科，有固定吃藥」。沒有發生過請選「無」。"}, {"id": "smoking_drinking", "label": "抽菸、飲酒或其他物質使用（可複選）", "kind": "multi", "options": ["無", "抽菸", "飲酒", "其他物質", "不清楚"], "exclusiveOptions": ["無", "不清楚"], "fieldsWhen": ["抽菸", "飲酒", "其他物質"], "fields": [{"id": "amount", "label": "種類與每日用量", "placeholder": "例：香菸每日 10 支"}, {"id": "frequency", "label": "使用頻率", "placeholder": "每日／每週"}, {"id": "withdrawal", "label": "停止時反應", "placeholder": "是否焦躁、失眠或其他反應"}], "example": "例：勾「抽菸」，用量「每天 10 支」、頻率「每天」、停止時反應「會煩躁、一直找菸」。都沒有請勾「無」。"}, {"id": "safety_other", "label": "其他需要特別留意的安全狀況（可複選）", "kind": "multi", "options": ["無", "火源或瓦斯", "電話或投資詐騙", "吞食異物", "拒絕治療或服藥", "跌落或攀爬", "其他", "不清楚"], "exclusiveOptions": ["無", "不清楚"], "detailPlaceholder": "請說明最近發生時間、頻率與家屬處理方式", "example": "例：勾「拒絕治療或服藥」，補充：會把藥藏在嘴裡再吐掉，最近一次是上週。都沒有請勾「無」。"}]}, {"id": "preferences-expectations", "title": "生活偏好與照顧期待", "description": "完成長輩的生活輪廓，並完整交接給護評人員準備電訪。", "questions": [{"id": "daily_routine", "label": "平常作息與生活型態", "options": ["可說明", "不清楚"], "fieldsWhen": ["可說明"], "fields": [{"id": "wake", "label": "起床時間", "placeholder": "例：上午 7 點"}, {"id": "nap", "label": "午睡習慣", "placeholder": "時間與長度"}, {"id": "bath", "label": "洗澡習慣", "placeholder": "時間、頻率與方式"}, {"id": "bed", "label": "就寢時間", "placeholder": "例：晚上 9 點"}], "detailPlaceholder": "可補充散步、看電視、家務或其他固定活動", "example": "例：選「可說明」，起床「早上 6 點」、午睡「下午 1 點睡 1 小時」、洗澡「晚上 7 點，隔天洗一次」、就寢「晚上 9 點」。"}, {"id": "interests", "label": "喜歡的活動、話題或安撫方式（可複選）", "kind": "multi", "options": ["看電視", "聽音樂或唱歌", "散步", "簡單家務", "宗教活動", "與家人通話", "聊天", "無特別偏好", "其他", "不清楚"], "exclusiveOptions": ["無特別偏好", "不清楚"], "detailPlaceholder": "請補充喜歡的節目、歌曲、話題或活動", "example": "例：勾「看電視」「聽音樂或唱歌」，補充：喜歡看歌仔戲、聽鄧麗君的歌，聊以前種田的事會很開心。"}, {"id": "dislikes", "label": "不喜歡、害怕或容易抗拒的事情", "options": ["有", "無", "不清楚"], "fieldsWhen": ["有"], "fields": [{"id": "situation", "label": "容易不安的情況", "placeholder": "例：突然碰觸、多人同時說話"}, {"id": "avoidance", "label": "可避免或改善方式", "placeholder": "家屬目前有效的方法"}], "example": "例：選「有」，容易不安的情況「很多人同時講話、突然被碰觸」、改善方式「先叫名字、說明要做什麼再碰他」。沒有請選「無」。"}, {"id": "care_reason", "label": "這次尋找機構照顧的主要原因（可複選）", "kind": "multi", "options": ["家庭照顧量能不足", "醫療或照護需求增加", "安全風險增加", "出院後需持續照顧", "長輩獨居", "其他", "不清楚"], "exclusiveOptions": ["不清楚"], "detailPlaceholder": "請補充近期發生的變化", "example": "例：勾「出院後需持續照顧」「家庭照顧量能不足」，補充：這次中風出院後需要兩個人扶，家裡白天沒人。"}, {"id": "family_expectation", "label": "家屬最重視的照顧期待（可複選）", "kind": "multi", "options": ["健康與用藥", "生活照顧", "活動與社交", "情緒與行為支持", "安全與防跌", "維持自理能力", "其他", "不清楚"], "exclusiveOptions": ["不清楚"], "detailPlaceholder": "請補充希望機構優先了解或協助的事項", "example": "例：勾「健康與用藥」「安全與防跌」，補充：希望能按時吃藥、不要再跌倒。"}, {"id": "dnr", "label": "DNR（預立拒絕心肺復甦）目前狀態", "help": "未簽署不會由系統自動降低適配性。", "options": ["已簽署", "未簽署", "有意願但尚未完成", "不確定"], "detailPlaceholder": "可補充文件由誰保管或目前討論情況", "example": "例：已經在醫院簽過，選「已簽署」，並把文件拍照上傳；還在考慮選「有意願但尚未完成」。選哪一項都不會影響是否能入住。"}, {"id": "other_notes", "label": "還有沒有前面未提到、希望護評人員知道的事", "options": ["有", "無", "稍後補充", "請客服協助"], "detailPlaceholder": "可自由敘明任何特殊需求或疑問", "example": "例：選「有」，補充：長輩怕冷，晚上要多一條被子；有一隻每天要摸的小狗玩偶。真的沒有請選「無」。"}]}], "notices": [{"id": "behavior_safety", "title": "行為安全與照護配合", "summary": "以具體行為、發生情境與可行的安撫方式評估照護安全，不因診斷名稱或單一行為自動拒絕入住。", "body": ["請如實說明走失、攻擊、自傷、性行為、拒絕照護或其他可能影響安全的具體情形。", "機構會再確認發生時間、頻率、誘發原因、曾造成的傷害，以及家中有效的安撫方式。", "這些資料用於安排電訪與照護準備，不會由系統自動作成承接決定。"], "taiwanese": "請照實講長輩敢有走失、推人、傷害家己，抑是無愛予人照顧的情形。咱欲了解發生的時間、次數、原因，閣有按怎安撫較有效。這是欲準備照顧，毋是予系統家己決定收抑無收。"}, {"id": "smoking_drinking", "title": "飲酒、抽菸與危險物品", "summary": "團體生活環境需事先掌握飲酒、抽菸、打火機或其他危險物品的使用習慣。", "body": ["請說明目前飲酒或抽菸的種類、頻率、時間、是否能配合指定區域與保管規範。", "入住後若有火源、酒精或其他可能危及自己與他人的物品，需依機構安全流程共同處理。"], "taiwanese": "若長輩有食酒、食薰，抑是會帶火拭仔佮危險物件，請講清楚種類、次數佮時間。入住了後，愛照機構的安全規定做伙處理。"}, {"id": "dnr", "title": "DNR／預立醫療照護意願", "summary": "只記錄目前文件與討論狀態，供後續核對；不納入適配評分，也不代表已完成法律文件。", "body": ["本系統只記錄：已簽署、未簽署、有意願尚未完成，或不確定。", "若已有文件，可在醫療文件區上傳供人工核對；沒有文件仍可繼續諮詢。", "此紀錄不影響適配評分，正式醫療決策仍依有效文件、醫療專業與當事人意願辦理。"], "taiwanese": "這馬干焦記錄 DNR 是已經簽、猶未簽、有意願猶未完成，抑是毋確定。有文件會使上傳予人確認；無文件嘛會使繼續諮詢。這項袂予系統提來評分抑是決定敢會使入住。"}, {"id": "restraint", "title": "約束與替代照護原則", "summary": "約束不是例行照護；若有立即安全風險，會先評估原因與可行的替代措施。", "body": ["機構不會把綁束、床欄或限制活動視為方便管理的常規方法。", "如遇立即危險，會依規範評估、告知、記錄並持續檢討，優先採用陪伴、環境調整與其他替代方式。", "請說明家中曾使用的方式、原因、時間與效果，供電訪人員進一步確認。"], "taiwanese": "機構袂共綁牢、床欄抑是限制活動當作平常的照顧方式。若有即時危險，會先想陪伴、環境調整佮其他替代方法，嘛會照規定告知、記錄佮檢討。"}, {"id": "group_infection", "title": "團體生活與感染風險", "summary": "入住後需共同配合作息、公共空間與感染管制；個別需求可先提出討論。", "body": ["團體生活包含用餐、洗澡、活動、探視與休息安排，機構會依照護需要與安全調整。", "如有發燒、呼吸道或腸胃症狀、接觸史或醫師指示，請主動告知並配合必要的檢查、隔離或防護措施。", "若有宗教、飲食、睡眠或溝通需求，請先提出，由人員評估可行安排。"], "taiwanese": "團體生活有食飯、洗身軀、活動、探視佮睏覺的安排。若有發燒、喘嗽、腹瀉抑是接觸著傳染病，請主動講，配合檢查、隔離佮保護。特別的宗教、食物、睏覺佮溝通需要，嘛請代先提出來討論。"}, {"id": "emergency_accompaniment", "title": "緊急送醫與急診陪同", "summary": "發生緊急狀況時，機構先依急救流程處理並聯絡家屬；陪同與後續安排需事先確認。", "body": ["機構會依現場狀況進行必要急救、聯絡 119 或安排就醫，並通知諮詢人或指定聯絡人。", "家屬需提供可聯絡時段、備援聯絡人，以及急診陪同、醫療決策與返院交通的安排。", "實際處置仍依當時病況、醫療專業與有效醫療意願文件辦理。"], "taiwanese": "若有緊急代誌，機構會照現場情形急救、拍一一九抑是送病院，嘛會通知諮詢人。家屬愛代先講陪急診、醫療決定、轉來轉去佮第二聯絡人的安排。實際按怎做，愛看彼當時的病況佮有效的醫療文件。"}, {"id": "transfer_discharge", "title": "照護安全異動與轉介原則", "summary": "若健康或行為狀況改變，先具體評估需要的照護與可行調整，再由人員共同討論後續安排。", "body": ["如出現原先未揭露或入住後新發生的高風險行為、感染、醫療或照護需求，機構會先記錄事實並與家屬討論。", "若現場照護方式仍不足以維持本人或他人安全，會說明已嘗試的措施、待補充資料與建議的醫療或照護轉介。", "系統只整理已確認事實與問卷矛盾供人員判斷，不使用污名化文字，也不自動作成退住或轉介決定。"], "taiwanese": "若入住進前無講著，抑是入住了後新發生危險行為、傳染、醫療佮照顧需要，機構會先記錄事實，佮家屬討論。若現場的照顧猶無夠安全，會講明試過啥物方法、欠啥物資料，閣由人共同決定後續，毋是予系統自動決定退住抑是轉介。"}]};
+var ROLES = ['客關室', '機構長／護理人員', '督導', '社工', '其他'];
+var VERDICTS = ['保留', '需修改', '建議刪除'];
+var ISSUES = ['題意不清楚', '選項不足或不貼切', '範例不貼切', '與現況作業不符', '家屬難以回答', '與其他題重複', '順序不恰當', '用詞太專業', '其他'];
+var EXTRA = [['documents', '醫療文件與藥袋'], ['voice', '語音補充'], ['notices', '重要照護須知'], ['family', '共同填寫的家屬'], ['newq', '新增題目建議'], ['review', '檢查與送出']];
+var KEY = 'nu-survey-draft-v1';
+var S = load() || { started: false, tester: '', role: '', scenario: '', step: 0, resp: {}, fb: {}, newq: [], overall: '' };
+var STEPS = DATA.secs.map(function (s) { return [s.id, s.title]; }).concat(EXTRA);
+var ALLQ = []; DATA.secs.forEach(function (s) { s.questions.forEach(function (q) { q.section = s.title; ALLQ.push(q); }); });
+ALLQ.forEach(function (q, i) { q.no = i + 1; });
+
+function load() { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } }
+function persist() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+function toast(m) { var t = document.getElementById('toast'); t.textContent = m; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function () { t.hidden = true; }, 2200); }
+function ans(id) { var a = S.resp[id] || {}; return { value: a.value || '', values: a.values || [], detail: a.detail || '', followUp: a.followUp || '', fields: a.fields || {} }; }
+function sel(q, a) { return q.kind === 'multi' ? a.values : a.value ? [a.value] : []; }
+function answered(q) {
+  var a = ans(q.id);
+  if (q.kind === 'multi') return a.values.length > 0;
+  if (q.kind === 'fields') { if (a.value === '不清楚') return true; var ids = q.requiredFieldIds || (q.fields || []).map(function (f) { return f.id; }); return ids.length > 0 && ids.every(function (k) { return (a.fields[k] || '').trim(); }); }
+  return !!a.value;
+}
+function display(q) {
+  var a = ans(q.id), s = sel(q, a);
+  var f = (q.fields || []).filter(function (x) { return (a.fields[x.id] || '').trim(); }).map(function (x) { return x.label + '：' + a.fields[x.id] + (x.unit ? ' ' + x.unit : ''); });
+  var fu = a.followUp === 'later' ? '（稍後補充）' : a.followUp === 'customer_service' ? '（請客服協助）' : '';
+  return [s.join('、')].concat(f, [a.detail]).filter(Boolean).join('；') + fu;
+}
+function fbOf(key) { return S.fb[key] || (S.fb[key] = { verdict: '', issues: [], suggestion: '', reason: '' }); }
+function fbDone(key) { var f = S.fb[key]; return f && (f.verdict || f.suggestion || f.reason); }
+
+// ── 畫面 ──
+function render() {
+  var app = document.getElementById('app'), nav = document.getElementById('nav');
+  if (!S.started) { nav.hidden = true; app.innerHTML = startView(); bindStart(); return; }
+  nav.hidden = false;
+  var cur = STEPS[S.step][0], sec = DATA.secs.filter(function (s) { return s.id === cur; })[0];
+  var done = ALLQ.filter(answered).length, fbn = ALLQ.filter(function (q) { return fbDone('q:' + q.id); }).length;
+  var h = '<div class="progress"><div class="bar"><span style="width:' + Math.round(done / ALLQ.length * 100) + '%"></span></div>' +
+    '<div class="ptext">已試填 ' + done + '／' + ALLQ.length + ' 題・已給建議 ' + fbn + ' 題・第 ' + (S.step + 1) + '／' + STEPS.length + ' 步：' + esc(STEPS[S.step][1]) + '</div>' +
+    '<select id="jump" style="min-height:44px;font-size:16px;padding:6px 10px">' + STEPS.map(function (s, i) { return '<option value="' + i + '"' + (i === S.step ? ' selected' : '') + '>' + (i + 1) + '. ' + esc(s[1]) + '</option>'; }).join('') + '</select></div>';
+  h += '<div class="note warn small">測試者：' + esc(S.tester) + '（' + esc(S.role) + '）　請以家屬的角度試填；每題下方紅框「🧪 測試建議」寫下您的意見。<button class="link small" id="reset" style="font-size:15px">更換測試者</button></div>';
+  if (sec) {
+    h += '<div class="card"><h1>' + esc(sec.title) + '</h1><p class="muted">' + esc(sec.description) + '</p>' +
+      '<div class="note">每一題都要回答：沒有發生請選「無」；不知道請選「不清楚」，再選擇「稍後補充」或「請客服協助」。</div>' +
+      sec.questions.map(qView).join('') + '</div>';
+  } else h += extraView(cur);
+  app.innerHTML = h;
+  document.getElementById('prev').disabled = S.step === 0;
+  document.getElementById('next').disabled = S.step === STEPS.length - 1;
+  bindAll();
+}
+
+function startView() {
+  return '<div class="card"><h1>家屬問卷內容測試</h1>' +
+    '<p>這個頁面和家屬實際拿到的填寫畫面一樣。請想像自己是家屬，用一位您熟悉的個案（請勿填真實姓名、身分證號）從頭試填一次。</p>' +
+    '<p>每一題下方有紅框的 <b>🧪 測試建議</b>：請選這題「保留／需修改／建議刪除」，有問題就勾選問題類型、寫下建議與理由。最後一步按「送出測試結果」，資料會自動整理到 Google 試算表。</p>' +
+    '<div class="note small">填到一半可以關掉，下次用同一台電腦、同一個瀏覽器打開會接著填。醫療文件與語音只展示畫面，不會真的上傳。</div>' +
+    '<label class="field"><span>您的姓名</span><input id="tester" value="' + esc(S.tester) + '" placeholder="例：王小美"></label>' +
+    '<label class="field"><span>角色</span><select id="role"><option value="">請選擇</option>' + ROLES.map(function (r) { return '<option' + (S.role === r ? ' selected' : '') + '>' + r + '</option>'; }).join('') + '</select></label>' +
+    '<label class="field"><span>模擬案例簡述（可不填）</span><input id="scenario" value="' + esc(S.scenario) + '" placeholder="例：中風出院、兒子代填、家人說法不一"></label>' +
+    '<button class="btn primary block" id="go">開始測試</button></div>';
+}
+function bindStart() {
+  document.getElementById('go').onclick = function () {
+    S.tester = document.getElementById('tester').value.trim(); S.role = document.getElementById('role').value; S.scenario = document.getElementById('scenario').value.trim();
+    if (!S.tester || !S.role) { toast('請填寫姓名與角色'); return; }
+    S.started = true; persist(); render(); window.scrollTo(0, 0);
+  };
+}
+
+function fieldHtml(q, f, v) {
+  var name = 'data-q="' + q.id + '" data-f="' + f.id + '"';
+  return '<label class="field"><span>' + esc(f.label) + (f.unit ? '（' + esc(f.unit) + '）' : '') + '</span>' +
+    (f.type === 'select' ? '<select ' + name + '><option value="">請選擇</option>' + f.options.map(function (o) { return '<option' + (o === v ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('') + '</select>'
+      : '<input ' + name + ' value="' + esc(v) + '" placeholder="' + esc(f.placeholder || '') + '"' + (f.type === 'number' ? ' inputmode="decimal"' : '') + '>') + '</label>';
+}
+function qView(q) {
+  var a = ans(q.id), s = sel(q, a), ok = answered(q);
+  var unk = s.some(function (v) { return v === '不清楚' || v === '不確定'; });
+  var showF = q.fields && (q.kind === 'fields' || !q.fieldsWhen || q.fieldsWhen.some(function (w) { return s.indexOf(w) >= 0; }));
+  var h = '<section class="q' + (ok ? ' done' : '') + '" id="q-' + q.id + '"><div class="qhead"><h2>' + q.no + '. ' + esc(q.label) + '</h2><span class="state' + (ok ? ' ok' : '') + '">' + (ok ? '✓ 已回答' : '未回答') + '</span></div>';
+  if (q.help) h += '<p class="help">' + esc(q.help) + '</p>';
+  if (q.example) h += '<div class="example"><b>📝 填寫範例</b>' + esc(q.example) + '</div>';
+  if (q.kind === 'fields') h += '<div class="fields">' + q.fields.map(function (f) { return fieldHtml(q, f, a.fields[f.id] || ''); }).join('') + '</div>';
+  h += '<div class="opts">' + q.options.map(function (o) { var on = s.indexOf(o) >= 0;
+    return '<button class="opt' + (on ? ' on' : '') + '" data-pick="' + q.id + '" data-o="' + esc(o) + '">' + (q.kind === 'multi' ? (on ? '☑ ' : '☐ ') : on ? '● ' : '○ ') + esc(o) + '</button>'; }).join('') + '</div>';
+  if (q.kind === 'multi') h += '<p class="muted small">可以選多個。</p>';
+  if (showF && q.kind !== 'fields') h += '<div class="fields">' + q.fields.filter(function (f) { return !f.showWhen || f.showWhen.some(function (w) { return s.indexOf(w) >= 0; }); }).map(function (f) { return fieldHtml(q, f, a.fields[f.id] || ''); }).join('') + '</div>';
+  if (unk && q.id !== 'dnr') h += '<div class="follow"><span>不清楚的話，接下來要：</span><button class="opt' + (a.followUp === 'later' ? ' on' : '') + '" data-fu="' + q.id + '" data-v="later">我稍後補充</button><button class="opt' + (a.followUp === 'customer_service' ? ' on' : '') + '" data-fu="' + q.id + '" data-v="customer_service">請客服協助</button></div>';
+  h += '<label class="field"><span>補充說明（可不填）</span><textarea rows="2" data-detail="' + q.id + '" placeholder="' + esc(q.detailPlaceholder || '有其他想說明的，可以寫在這裡') + '">' + esc(a.detail) + '</textarea></label>';
+  h += '<button class="btn small" data-voice="1">🎙 用說的補充</button>';
+  return h + fbView('q:' + q.id) + '</section>';
+}
+function fbView(key) {
+  var f = fbOf(key);
+  return '<details class="fb"' + (f.verdict || f.suggestion ? ' open' : '') + '><summary>🧪 測試建議' + (f.verdict ? '<span class="fbtag">' + esc(f.verdict) + '</span>' : '') + '</summary>' +
+    '<div class="opts">' + VERDICTS.map(function (v) { return '<button class="opt' + (f.verdict === v ? ' on' : '') + '" data-verdict="' + key + '" data-v="' + v + '">' + v + '</button>'; }).join('') + '</div>' +
+    '<div class="chips">' + ISSUES.map(function (i) { return '<button class="chip' + (f.issues.indexOf(i) >= 0 ? ' on' : '') + '" data-issue="' + key + '" data-v="' + i + '">' + i + '</button>'; }).join('') + '</div>' +
+    '<label class="field"><span>建議修改內容（題目、選項、範例要改成什麼）</span><textarea rows="2" data-fbs="' + key + '">' + esc(f.suggestion) + '</textarea></label>' +
+    '<label class="field"><span>理由（現場為什麼需要這樣改）</span><textarea rows="2" data-fbr="' + key + '">' + esc(f.reason) + '</textarea></label></details>';
+}
+
+function extraView(cur) {
+  if (cur === 'documents') return '<div class="card"><h1>醫療文件與藥袋</h1><p>拍下藥袋、出院病摘、檢查報告或 DNR 文件上傳，可以減少抄寫錯誤。沒有文件也可以繼續填寫。</p>' +
+    '<div class="example"><b>📝 拍照小提醒</b>藥袋請拍「正面、有藥名與日期」那一面，一個藥袋一張；最好上傳最近一次領藥的藥袋。</div>' +
+    '<label class="field"><span>文件類型</span><select><option>藥袋／處方</option><option>出院病摘</option><option>檢查報告</option><option>DNR／預立醫療文件</option><option>其他醫療文件</option></select></label>' +
+    '<label class="field"><span>文件日期（藥袋上的領藥日期；不知道可不填）</span><input placeholder="例：115/10/16"></label>' +
+    '<label class="field"><span>實際服用情形（例：早上這顆最近自己停了、常忘記吃晚上的藥）</span><textarea rows="2"></textarea></label>' +
+    '<div class="sim">📷 選擇照片或 PDF（測試版不實際上傳）</div>' + fbView('step:documents') + '</div>';
+  if (cur === 'voice') return '<div class="card"><h1>語音補充</h1><p>不方便打字時，可以直接用說的，國語、台語或國台語混講都可以。錄音前會先請您同意；不同意錄音也沒關係，可以用文字填寫或請客服協助。</p>' +
+    '<div class="example"><b>📝 可以這樣說</b>「媽媽晚上會起來找東西，有時候會推照顧她的人。白天比較安靜，喜歡聽歌仔戲。每天早上吃一顆血壓藥。」</div>' +
+    '<label class="field"><span>☐ 我同意錄音，並同意轉成文字供護評人員參考。錄音只保存到下方選擇的天數。</span></label>' +
+    '<label class="field"><span>說話的語言</span><select><option>國台語混講</option><option>國語</option><option>台語</option></select></label>' +
+    '<label class="field"><span>原始錄音保存天數</span><select><option>30 天</option><option>7 天</option><option>90 天</option></select></label>' +
+    '<div class="sim">● 開始錄音（測試版不實際錄音）</div>' + fbView('step:voice') + '</div>';
+  if (cur === 'notices') return '<div class="card"><h1>重要照護須知</h1><p class="muted">可用文字、國語或台語了解；這不是入住契約，也不會自動判定是否承接。</p>' +
+    DATA.notices.map(function (t, i) { return '<section class="q"><p class="tag">主題 ' + (i + 1) + '</p><h2>' + esc(t.title) + '</h2><p>' + esc(t.summary) + '</p><ul class="list">' + t.body.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>' +
+      '<div class="opts"><button class="opt" data-speak="' + i + '" data-lang="zh">🔊 播放國語</button><button class="opt" data-speak="' + i + '" data-lang="nan">🎧 播放台語</button></div>' +
+      '<details><summary class="small">看台語版本文字</summary><p class="small">' + esc(t.taiwanese) + '</p></details>' +
+      '<button class="btn primary block" disabled>我已了解並確認（測試版）</button>' + fbView('notice:' + t.id) + '</section>'; }).join('') + '</div>';
+  if (cur === 'family') return '<div class="card"><h1>共同填寫的家屬</h1><p>其他家屬比較清楚的部分（例如住在一起的家人比較知道夜間狀況），可以邀請他一起補充。每個人填的內容都會標示名字，不會互相覆蓋紀錄。</p>' +
+    '<label class="field"><span>家屬姓名</span><input placeholder="例：王小二"></label><label class="field"><span>與長輩的關係</span><input placeholder="例：女兒"></label>' +
+    '<label class="field"><span>手機號碼（用末四碼驗證）</span><input placeholder="例：0988-111-222"></label><div class="sim">產生邀請連結（測試版不實際產生）</div>' + fbView('step:family') + '</div>';
+  if (cur === 'newq') return '<div class="card"><h1>新增題目建議</h1><p>現場需要、但問卷沒有問到的內容，請寫在這裡。</p><div id="newqs">' +
+    S.newq.map(function (n, i) { return '<div class="q"><div class="qhead"><h2>建議 ' + (i + 1) + '</h2><button class="link small" data-delnq="' + i + '" style="font-size:15px">刪除</button></div>' +
+      '<label class="field"><span>放在哪個區塊</span><select data-nq="' + i + '" data-k="section">' + DATA.secs.map(function (s) { return '<option' + (n.section === s.title ? ' selected' : '') + '>' + esc(s.title) + '</option>'; }).join('') + '</select></label>' +
+      '<label class="field"><span>建議題目</span><input data-nq="' + i + '" data-k="label" value="' + esc(n.label) + '" placeholder="例：是否有食物不耐或特別不吃的食物"></label>' +
+      '<label class="field"><span>選項（用「／」分隔）</span><input data-nq="' + i + '" data-k="options" value="' + esc(n.options) + '" placeholder="例：有／無／不清楚"></label>' +
+      '<label class="field"><span>理由</span><textarea rows="2" data-nq="' + i + '" data-k="reason">' + esc(n.reason) + '</textarea></label></div>'; }).join('') +
+    '</div><button class="btn outline block" id="addnq">＋ 新增一題建議</button>' +
+    '<label class="field"><span>整體意見（題數、順序、填寫時間、家屬接受度等）</span><textarea rows="4" id="overall">' + esc(S.overall) + '</textarea></label></div>';
+  // review
+  var miss = ALLQ.filter(function (q) { return !answered(q); });
+  var fbn = Object.keys(S.fb).filter(fbDone).length;
+  var mod = Object.keys(S.fb).filter(function (k) { return S.fb[k].verdict === '需修改' || S.fb[k].verdict === '建議刪除'; }).length;
+  return '<div class="card"><h1>檢查與送出</h1>' +
+    (miss.length ? '<h2 style="color:#b3261e;margin:16px 0 8px">還有 ' + miss.length + ' 題未試填</h2><p class="small muted">家屬版這些題目未回答時不能送出；測試版仍可送出，未試填會記錄為空白。</p><ul class="list">' +
+      miss.map(function (q) { return '<li><button class="link" data-jumpq="' + q.id + '">' + q.no + '. ' + esc(q.label) + '</button></li>'; }).join('') + '</ul>' : '<div class="note ok">所有題目都已試填，謝謝您！</div>') +
+    '<div class="note">已給建議 ' + fbn + ' 項，其中「需修改」或「建議刪除」' + mod + ' 項；新增題目建議 ' + S.newq.length + ' 題。</div>' +
+    '<button class="btn primary block" id="submit">送出測試結果</button><p class="small muted">送出後會寫入 Google 試算表「測試回饋」分頁。可以修改後再送出，同一位測試者以最後一次送出的內容為準。</p><div id="result"></div></div>';
+}
+
+// ── 事件 ──
+function bindAll() {
+  var $ = function (q) { return Array.prototype.slice.call(document.querySelectorAll(q)); };
+  $('[data-pick]').forEach(function (b) { b.onclick = function () {
+    var q = ALLQ.filter(function (x) { return x.id === b.dataset.pick; })[0], a = ans(q.id), o = b.dataset.o, s = sel(q, a);
+    if (q.kind === 'multi') { var ex = q.exclusiveOptions || [], n;
+      if (s.indexOf(o) >= 0) n = s.filter(function (x) { return x !== o; }); else n = ex.indexOf(o) >= 0 ? [o] : s.filter(function (x) { return ex.indexOf(x) < 0; }).concat([o]);
+      a.values = n; if (n.indexOf('不清楚') < 0) a.followUp = '';
+    } else if (q.kind === 'fields') { a.value = a.value === o ? '' : o; }
+    else { a.value = o; if (o !== '不清楚' && o !== '不確定') a.followUp = ''; }
+    S.resp[q.id] = a; keep(); }; });
+  $('[data-fu]').forEach(function (b) { b.onclick = function () { var a = ans(b.dataset.fu); a.followUp = b.dataset.v; S.resp[b.dataset.fu] = a; keep(); }; });
+  $('[data-f]').forEach(function (el) { el.onchange = function () { var a = ans(el.dataset.q); a.fields[el.dataset.f] = el.value; S.resp[el.dataset.q] = a; keep(); }; });
+  $('[data-detail]').forEach(function (el) { el.onchange = function () { var a = ans(el.dataset.detail); a.detail = el.value; S.resp[el.dataset.detail] = a; persist(); }; });
+  $('[data-voice]').forEach(function (b) { b.onclick = function () { toast('家屬版會開啟錄音視窗；測試版不實際錄音'); }; });
+  $('[data-verdict]').forEach(function (b) { b.onclick = function () { var f = fbOf(b.dataset.verdict); f.verdict = f.verdict === b.dataset.v ? '' : b.dataset.v; keep(); }; });
+  $('[data-issue]').forEach(function (b) { b.onclick = function () { var f = fbOf(b.dataset.issue), i = f.issues.indexOf(b.dataset.v); if (i >= 0) f.issues.splice(i, 1); else f.issues.push(b.dataset.v); keep(); }; });
+  $('[data-fbs]').forEach(function (el) { el.onchange = function () { fbOf(el.dataset.fbs).suggestion = el.value; persist(); }; });
+  $('[data-fbr]').forEach(function (el) { el.onchange = function () { fbOf(el.dataset.fbr).reason = el.value; persist(); }; });
+  $('[data-speak]').forEach(function (b) { b.onclick = function () { var t = DATA.notices[+b.dataset.speak]; speak(b.dataset.lang === 'nan' ? t.taiwanese : t.title + '。' + t.summary + t.body.join(''), b.dataset.lang); }; });
+  $('[data-nq]').forEach(function (el) { el.onchange = function () { S.newq[+el.dataset.nq][el.dataset.k] = el.value; persist(); }; });
+  $('[data-delnq]').forEach(function (b) { b.onclick = function () { S.newq.splice(+b.dataset.delnq, 1); keep(); }; });
+  $('[data-jumpq]').forEach(function (b) { b.onclick = function () { var q = ALLQ.filter(function (x) { return x.id === b.dataset.jumpq; })[0]; S.step = DATA.secs.map(function (s) { return s.title; }).indexOf(q.section); persist(); render(); setTimeout(function () { var e = document.getElementById('q-' + q.id); e && e.scrollIntoView({ block: 'center' }); }, 50); }; });
+  var add = document.getElementById('addnq'); if (add) add.onclick = function () { S.newq.push({ section: DATA.secs[0].title, label: '', options: '', reason: '' }); keep(); };
+  var ov = document.getElementById('overall'); if (ov) ov.onchange = function () { S.overall = ov.value; persist(); };
+  var sub = document.getElementById('submit'); if (sub) sub.onclick = submit;
+  var jump = document.getElementById('jump'); if (jump) jump.onchange = function () { S.step = +jump.value; persist(); render(); window.scrollTo(0, 0); };
+  var rs = document.getElementById('reset'); if (rs) rs.onclick = function () { S.started = false; persist(); render(); };
+}
+function keep() { var y = window.scrollY; persist(); render(); window.scrollTo(0, y); }
+document.getElementById('prev').onclick = function () { if (S.step > 0) { S.step--; persist(); render(); window.scrollTo(0, 0); } };
+document.getElementById('next').onclick = function () { if (S.step < STEPS.length - 1) { S.step++; persist(); render(); window.scrollTo(0, 0); } };
+document.getElementById('save').onclick = function () { persist(); toast('已暫存在這台電腦，下次打開會接著填'); };
+
+function speak(text, lang) {
+  if (!('speechSynthesis' in window)) { toast('這個瀏覽器不支援語音播放'); return; }
+  speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(text), vs = speechSynthesis.getVoices();
+  var v = lang === 'nan' ? (vs.filter(function (x) { return /nan|hokkien|min/i.test(x.lang + x.name); })[0] || vs.filter(function (x) { return x.lang === 'zh-TW'; })[0]) : vs.filter(function (x) { return x.lang === 'zh-TW'; })[0];
+  if (v) u.voice = v; u.lang = v ? v.lang : 'zh-TW'; u.rate = 0.9; speechSynthesis.speak(u);
+}
+
+function rowsForSubmit() {
+  var rows = [];
+  ALLQ.forEach(function (q) { var f = S.fb['q:' + q.id] || {};
+    rows.push(['題目', q.section, q.no, q.label, display(q), f.verdict || '', (f.issues || []).join('、'), f.suggestion || '', f.reason || '']); });
+  [['step:documents', '醫療文件與藥袋'], ['step:voice', '語音補充'], ['step:family', '共同填寫的家屬']].forEach(function (x) { var f = S.fb[x[0]];
+    if (f && (f.verdict || f.suggestion || f.reason)) rows.push(['畫面', x[1], '', x[1], '', f.verdict, f.issues.join('、'), f.suggestion, f.reason]); });
+  DATA.notices.forEach(function (t, i) { var f = S.fb['notice:' + t.id];
+    if (f && (f.verdict || f.suggestion || f.reason)) rows.push(['入住須知', '重要照護須知', i + 1, t.title, '', f.verdict, f.issues.join('、'), f.suggestion, f.reason]); });
+  S.newq.filter(function (n) { return n.label.trim(); }).forEach(function (n) { rows.push(['新增題目', n.section, '', n.label, n.options, '新增', '', n.options, n.reason]); });
+  if (S.overall.trim()) rows.push(['整體意見', '', '', '整體意見', '', '', '', S.overall, '']);
+  return rows;
+}
+function submit() {
+  var btn = document.getElementById('submit'), out = document.getElementById('result');
+  btn.disabled = true; btn.textContent = '送出中…';
+  var payload = { tester: S.tester, role: S.role, scenario: S.scenario, rows: rowsForSubmit() };
+  var ok = function (r) {
+    out.innerHTML = '<div class="note ok">已送出 ' + r.count + ' 筆（測試編號 ' + r.id + '），謝謝您！如需修改，改完再送出一次即可（以最後一次為準）。</div>';
+    btn.disabled = false; btn.textContent = '再次送出';
+  };
+  var fail = function (e) {
+    out.innerHTML = '<div class="note bad">送出失敗：' + esc(e && e.message || e) + '。內容已暫存在這台裝置，請稍後再試。</div>';
+    btn.disabled = false; btn.textContent = '送出測試結果';
+  };
+  window.__payload = payload;
+  if (!window.google || !google.script) {
+    if (location.protocol === 'file:') { fail('預覽模式無法送出'); return; }
+    fetch(EXEC_URL, { method: 'POST', body: JSON.stringify(payload), credentials: 'omit', redirect: 'follow' })
+      .then(function (r) { return r.json(); })
+      .then(function (r) { if (r.ok) ok(r); else fail(r.error); })
+      .catch(function (e) { fail('網路連線失敗（' + (e && e.message || e) + '）'); });
+    return;
+  }
+  google.script.run.withSuccessHandler(function (r) {
+    out.innerHTML = '<div class="note ok">已送出 ' + r.count + ' 筆（測試編號 ' + r.id + '），謝謝您！如需修改，改完再送出一次即可。</div>';
+    btn.disabled = false; btn.textContent = '再次送出';
+  }).withFailureHandler(function (e) {
+    out.innerHTML = '<div class="note bad">送出失敗：' + esc(e.message || e) + '。內容已暫存在這台電腦，請稍後再試。</div>';
+    btn.disabled = false; btn.textContent = '送出測試結果';
+  }).saveFeedback(payload);
+}
+render();
+</script>
+</body>
+</html>
